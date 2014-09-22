@@ -24,34 +24,39 @@
    Returns the `HMLauncherView`, which should embed the icon, when the dragging ends.
    @param icon The icon which laucher home should be evaluated.
  **/
-- (HMLauncherView*) targetLauncherViewForIcon:(HMLauncherIcon*) icon;
+- (HMLauncherView *)targetLauncherViewForIcon:(HMLauncherIcon *)icon;
 
+- (BOOL)launcherViewShouldStopEditingAfterDraggingEnds:(HMLauncherView *)launcherView;
 
-- (BOOL) launcherViewShouldStopEditingAfterDraggingEnds:(HMLauncherView *)launcherView;
+- (float)shakeRadian;
+- (float)shakeTime;
+- (float)scrollingFraction;
+- (float)scrollingTimeInterval;
+- (float)longPressDuration;
+- (float)selectedZoomTransform;
+
 
 @optional
-- (void) launcherView:(HMLauncherView*) launcherView didStartDragging:(HMLauncherIcon*) icon;
+- (void)launcherView:(HMLauncherView *)launcherView didStartDragging:(HMLauncherIcon *)icon;
 
-- (void) launcherView:(HMLauncherView*) launcherView didStopDragging:(HMLauncherIcon*) icon;
+- (void)launcherView:(HMLauncherView *)launcherView didStopDragging:(HMLauncherIcon *)icon;
 
-- (void) launcherView:(HMLauncherView*) launcherView didTapLauncherIcon:(HMLauncherIcon*) icon;
+- (void)launcherView:(HMLauncherView *)launcherView didTapLauncherIcon:(HMLauncherIcon *)icon;
 
-- (void) launcherView:(HMLauncherView*) launcherView willAddIcon:(HMLauncherIcon*) icon;
+- (void)launcherView:(HMLauncherView *)launcherView willAddIcon:(HMLauncherIcon *)icon;
 
-- (void) launcherView:(HMLauncherView*) launcherView didDeleteIcon:(HMLauncherIcon*) icon;
+- (void)launcherView:(HMLauncherView *)launcherView didDeleteIcon:(HMLauncherIcon *)icon;
 
-- (void) launcherView:(HMLauncherView*) launcherView willMoveIcon:(HMLauncherIcon*) icon 
-            fromIndex:(NSIndexPath*) fromIndex 
-              toIndex:(NSIndexPath*) toIndex;
+- (void)launcherView:(HMLauncherView *)launcherView willMoveIcon:(HMLauncherIcon *)icon
+           fromIndex:(NSIndexPath *)fromIndex
+             toIndex:(NSIndexPath *)toIndex;
 
+- (void)launcherViewDidAppear:(HMLauncherView *)launcherView;
 
-- (void) launcherViewDidAppear:(HMLauncherView *)launcherView;
+- (void)launcherViewDidDisappear:(HMLauncherView *)launcherView;
 
-- (void) launcherViewDidDisappear:(HMLauncherView *)launcherView;
+- (void)launcherViewDidStartEditing:(HMLauncherView *)launcherView;
 
-- (void) launcherViewDidStartEditing:(HMLauncherView*) launcherView;
-
-- (void) launcherViewDidStopEditing:(HMLauncherView*) launcherView;
-
+- (void)launcherViewDidStopEditing:(HMLauncherView *)launcherView;
 
 @end

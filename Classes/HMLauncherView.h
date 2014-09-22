@@ -20,34 +20,33 @@
 
 @interface HMLauncherView : UIView <UIScrollViewDelegate, UIAlertViewDelegate>
 
-- (void) reloadData;
-- (void) startEditing;
-- (void) stopEditing;
+- (void)reloadData;
+- (void)startEditing;
+- (void)stopEditing;
 
 /**
- Jumps to the given (0-based) page
- @param currentPage the (0-based) index of the page which should be displayed.
- @param animated if the transition should be animated
+   Jumps to the given (0-based) page
+   @param currentPage the (0-based) index of the page which should be displayed.
+   @param animated if the transition should be animated
  **/
-- (void) setCurrentPage:(NSUInteger) currentPage animated:(BOOL) animated;
-
-/** 
- Returns the current displayed page (0-based)
- **/
-- (NSUInteger) currentPage;
+    - (void)setCurrentPage:(NSUInteger)currentPage animated:(BOOL)animated;
 
 /**
- Adds the icon to the view. Please note that the icon has to be added to the datasource before.
+   Returns the current displayed page (0-based)
  **/
-- (void) addIcon:(HMLauncherIcon*) icon;
+- (NSUInteger)currentPage;
 
-/** 
- Removes the icon from the view. Please note that the icon will not be removed from the datasource.
+/**
+   Adds the icon to the view. Please note that the icon has to be added to the datasource before.
  **/
-- (void) removeIcon:(HMLauncherIcon*) icon;
+- (void)addIcon:(HMLauncherIcon *)icon;
 
-- (void) removeIconAnimated:(HMLauncherIcon*) icon completion:(void (^) (void)) block;
+/**
+   Removes the icon from the view. Please note that the icon will not be removed from the datasource.
+ **/
+- (void)removeIcon:(HMLauncherIcon *)icon;
 
+- (void)removeIconAnimated:(HMLauncherIcon *)icon completion:(void (^) (void))block;
 
 @property (nonatomic, assign) BOOL shouldLayoutDragButton;
 @property (nonatomic, readonly) BOOL editing;
