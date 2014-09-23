@@ -403,6 +403,18 @@
             [self.delegate launcherView:self willMoveIcon:icon fromIndex:previousIndexPath toIndex:indexPath];
         }
     }
+
+    if (![self.delegate canIconBeOutOfBounds]) {
+		float limit = fabsf([self.delegate outOfBoundsLimit]);
+        CGRect outOfBoundsSuperView = CGRectMake(icon.superview.frame.origin.x - limit,
+												 icon.superview.frame.origin.y - limit,
+												 icon.superview.frame.size.width + 2 * limit,
+												 icon.superview.frame.size.height + 2 * limit);
+
+        if (!CGRectContainsPoint(outOfBoundsSuperView, [launcherView.scrollView convertPoint:icon.center fromView:icon.superview])) {
+            [self longPressEnded:icon];
+        }
+    }
     [launcherView setTargetPath:indexPath];
     [launcherView setDragIcon:icon];
 }
@@ -742,17 +754,17 @@
                      animations:^{
          [self enumeratePagesUsingBlock:^(NSUInteger page) {
               [self enumerateIconsOfPage:page usingBlock:^(HMLauncherIcon *icon, NSUInteger idx) {
-                                   if (icon != self.dragIcon && icon != self.closingIcon) {
-                                       ++nWobblyIcons;
+                   if (icon != self.dragIcon && icon != self.closingIcon) {
+                       ++nWobblyIcons;
 
-                                       if (i % 2) {
-                                           icon.transform = wobbleRight;
-                                       } else {
-                                           icon.transform = wobbleLeft;
-                                       }
-                                   }
-                                   ++i;
-                               }];
+                       if (i % 2) {
+                           icon.transform = wobbleRight;
+                       } else {
+                           icon.transform = wobbleLeft;
+                       }
+                   }
+                   ++i;
+               }];
           }];
      } completion: ^(BOOL finished){
 
@@ -767,10 +779,10 @@
                                     delay:0.0
                                   options:UIViewAnimationOptionAllowUserInteraction
                                animations:^{
-                  icon.transform = CGAffineTransformIdentity;
-              } completion: ^(BOOL finished) {
+                   icon.transform = CGAffineTransformIdentity;
+               } completion: ^(BOOL finished) {
 
-              }];
+               }];
           }];
      }];
 }

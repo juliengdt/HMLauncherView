@@ -35,6 +35,8 @@
 - (float)longPressDuration;
 - (float)selectedZoomTransform;
 
+- (BOOL)canIconBeOutOfBounds;
+- (float)outOfBoundsLimit;
 
 @optional
 - (void)launcherView:(HMLauncherView *)launcherView didStartDragging:(HMLauncherIcon *)icon;

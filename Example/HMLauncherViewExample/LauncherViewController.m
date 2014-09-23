@@ -219,6 +219,15 @@
     return 1.2f;
 }
 
+- (BOOL)canIconBeOutOfBounds
+{
+	return NO;
+}
+- (float)outOfBoundsLimit
+{
+	return -15.0f;
+}
+
 #pragma mark - Lifecycle
 - (id)initWithLauncherService:(LauncherService *)inLauncherService
 {
